@@ -31,11 +31,11 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         System.out.println("Loading data . . .");
 
-        roleRepository.save(new Role("JOBSEEKER"));
-        roleRepository.save(new Role("RECRUITER"));
+        roleRepository.save(new Role("USER"));
+        roleRepository.save(new Role("ADMIN"));
 
-        Role adminRole = roleRepository.findByRole("RECRUITER");
-        Role userRole = roleRepository.findByRole("JOBSEEKER");
+        Role adminRole = roleRepository.findByRole("ADMIN");
+        Role userRole = roleRepository.findByRole("USER");
 
         User user = new User("bob@bob.com","bob","Bob","Bobberson", true, "bob");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -58,5 +58,9 @@ public class DataLoader implements CommandLineRunner {
         userRepository.save(user);
 
 
+        user = new User("raya@every.com","password","raya","Meresa", true, "jobseeker");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Arrays.asList(userRole, adminRole));
+        userRepository.save(user);
     }
 }
