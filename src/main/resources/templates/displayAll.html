@@ -19,14 +19,14 @@
                     <th>Registered Date</th>
 
                 </tr>
-                <div th:each="test : ${values}">
+                <div th:each="person : ${persons}">
 
                     <tr>
 
-                        <td><p th:text = "${test.firstName}"></p></td>
-                        <td th:text = "${test.lastName}"></td>
-                        <td th:text = "${test.email}"></td>
-                        <td th:text = "${#dates.format(test.date, 'MMM-dd-yyyy')}"></td>
+                        <td><p th:text = "${person.firstName}"></p></td>
+                        <td th:text = "${person.lastName}"></td>
+                        <td th:text = "${person.email}"></td>
+                        <td th:text = "${#dates.format(person.date, 'MMM-dd-yyyy')}"></td>
 
                     </tr>
                 </div>
@@ -37,19 +37,22 @@
             <table class="table table-hover">
 
                 <tr>
-                    <th>University</th>
-                    <th>Major</th>
-                    <th>Graduation Year</th>
+                    <th>School Name</th>
+                    <th>Degree</th>
+                    <th>Field Of Study</th>
+                    <th>Grade</th>
 
 
                 </tr>
-                <div th:each="test : ${Educvalues}">
+                <div th:each="education : ${educations}">
 
                     <tr>
 
-                        <td th:text = "${test.university}"></td>
-                        <td th:text = "${test.major}"></td>
-                        <td th:text = "${test.graduationYear}"></td>
+                        <td th:text = "${education.schoolName}"></td>
+                        <td th:text = "${education.degree}"></td>
+                        <td th:text = "${education.fieldOfStudy}"></td>
+                        <td th:text = "${education.grade}"></td>
+
 
                     </tr>
                 </div>
@@ -60,7 +63,7 @@
             <table class="table table-hover">
 
                 <tr>
-                    <th>Company</th>
+                    <th>Company Name</th>
                     <th>Position</th>
                     <th>From</th>
                     <th>To</th>

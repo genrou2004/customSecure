@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: Mena">
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+
+        <nav class="navbar navbar-default" th:replace="base::navi"> </nav>
+
+        <table class="table table-hover">
+
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Registered Date</th>
+
+            </tr>
+            <div th:each="person : ${persons}">
+
+                <tr>
+
+                    <td><p th:text = "${person.firstName}"></p></td>
+                    <td th:text = "${person.lastName}"></td>
+                    <td th:text = "${person.email}"></td>
+                    <td th:text = "${#dates.format(person.date, 'MMM-dd-yyyy')}"></td>
+
+                </tr>
+            </div>
+
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
