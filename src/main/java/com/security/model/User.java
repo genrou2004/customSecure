@@ -45,13 +45,14 @@ public class User {
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username, String userType) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.enabled = enabled;
         this.username = username;
+        this.userType = userType;
     }
 
     public User() {

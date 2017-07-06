@@ -31,34 +31,28 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         System.out.println("Loading data . . .");
 
-        roleRepository.save(new Role("USER"));
-        roleRepository.save(new Role("ADMIN"));
+            roleRepository.save(new Role("JOBSEEKER"));
+        roleRepository.save(new Role("RECRUITER"));
 
-        Role adminRole = roleRepository.findByRole("ADMIN");
-        Role userRole = roleRepository.findByRole("USER");
+        Role adminRole = roleRepository.findByRole("RECRUITER");
+        Role userRole = roleRepository.findByRole("JOBSEEKER");
 
-        User user = new User("bob@bob.com","bob","Bob","Bobberson", true, "bob");
+        User user = new User("bob@bob.com","bob","Bob","Bobberson", true, "bob", "JOBSEEKER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Arrays.asList(userRole));
         userRepository.save(user);
 
-        user = new User("jim@jim.com","jim","Jim","Jimmerson", true, "jim");
+        user = new User("jim@jim.com","jim","Jim","Jimmerson", true, "jim","JOBSEEKER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Arrays.asList(userRole));
         userRepository.save(user);
 
-        user = new User("admin@secure.com","password","Admin","User", true, "admin");
+        user = new User("admin@secure.com","password","Admin","User", true, "admin","RECRUITER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Arrays.asList(adminRole));
         userRepository.save(user);
 
-        user = new User("sam@every.com","password","Sam","Everyman", true, "everyman");
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Arrays.asList(userRole, adminRole));
-        userRepository.save(user);
-
-
-        user = new User("raya@every.com","password","raya","Meresa", true, "jobseeker");
+        user = new User("sam@every.com","password","Sam","Everyman", true, "everyman","RECRUITER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Arrays.asList(userRole, adminRole));
         userRepository.save(user);

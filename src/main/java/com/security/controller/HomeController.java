@@ -1,14 +1,8 @@
 package com.security.controller;
 
 import com.security.config.UserValidator;
-import com.security.model.Education;
-import com.security.model.Experience;
-import com.security.model.Skills;
-import com.security.model.User;
-import com.security.respository.EducationRepository;
-import com.security.respository.ExperienceRepository;
-import com.security.respository.SkillsRepository;
-import com.security.respository.UserRepository;
+import com.security.model.*;
+import com.security.respository.*;
 import com.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +31,8 @@ public class HomeController {
     private UserRepository userRepository;
     @Autowired
     private EducationRepository educationRepository;
+    @Autowired
+    private JobRepository jobRepository;
     @Autowired
     private ExperienceRepository experienceRepository;
 
@@ -127,13 +123,38 @@ public class HomeController {
         //String username = user.getUsername();
         user = userRepository.findByUsername(principal.getName());
         String typeRole = user.getUserType();
-        if (typeRole.equalsIgnoreCase("USER")){
-            return "registration";
+        System.out.println("Here is Role type inserted: "+typeRole);
+        if (typeRole.equalsIgnoreCase("jobseeker")){
+            return "jobseeker";
+        }else if(typeRole.equalsIgnoreCase("recruiter")) {
+            return "redirect:/job";
         }else
-            return "experience";
+            return "Wrong Role Type, Please insert the correct role";
 
 
     }
+
+
+
+
+    @RequestMapping(value = "/job", method = RequestMethod.GET)
+    public String getJob(Model model) {
+
+        model.addAttribute("job", new Skills());
+        return "jobForm";
+    }
+
+    @RequestMapping(value = "/job", method = RequestMethod.POST)
+    public String processJob(@ModelAttribute Job jobs, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "jobForm";
+        }
+        jobRepository.save(jobs);
+        return "jobForm";
+    }
+
+
+
 
     public UserValidator getUserValidator() {
         return userValidator;
