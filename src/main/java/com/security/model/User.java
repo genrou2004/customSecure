@@ -39,6 +39,8 @@ public class User {
     //@NotEmpty(message = "Please provide your username")
     private String username;
 
+    @Column(name = "userType")
+    private String userType;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
@@ -116,5 +118,13 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

@@ -3,9 +3,12 @@ package com.security.controller;
 import com.security.config.UserValidator;
 import com.security.model.Education;
 import com.security.model.Experience;
+import com.security.model.Skills;
 import com.security.model.User;
 import com.security.respository.EducationRepository;
 import com.security.respository.ExperienceRepository;
+import com.security.respository.SkillsRepository;
+import com.security.respository.UserRepository;
 import com.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 /**
  * Created by student on 7/5/17.
@@ -26,7 +30,11 @@ public class HomeController {
     @Autowired
     private UserValidator userValidator;
     @Autowired
+    private SkillsRepository skillsRepository;
+    @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private EducationRepository educationRepository;
     @Autowired
@@ -70,12 +78,13 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/education", method = RequestMethod.POST)
-    public String processEducationForm(@ModelAttribute Education education, BindingResult bindingResult) {
+    public String processEducationForm(@ModelAttribute Education education, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "education";
         }
         educationRepository.save(education);
-        return "redirect:/experience";
+        model.addAttribute(new Education());
+        return "education";
     }
 
     @RequestMapping(value = "/experience", method = RequestMethod.GET)
@@ -86,32 +95,45 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/experience", method = RequestMethod.POST)
-    public String processExperienceForm(@ModelAttribute Experience experience, BindingResult bindingResult) {
+    public String processExperienceForm(@ModelAttribute Experience experience, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "experience";
         }
         experienceRepository.save(experience);
+        model.addAttribute(new Experience()); //to relaod and remove the data of the form(Rest form)
         return "experience";
     }
 
     @RequestMapping(value = "/skills", method = RequestMethod.GET)
     public String getSkills(Model model) {
 
-        model.addAttribute("skills", new Experience());
+        model.addAttribute("skill", new Skills());
         return "skills";
     }
 
     @RequestMapping(value = "/skills", method = RequestMethod.POST)
-    public String processSkills(@ModelAttribute Experience experience, BindingResult bindingResult) {
+    public String processSkills(@ModelAttribute Skills skill, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "skills";
         }
-        experienceRepository.save(experience);
+        skillsRepository.save(skill);
         return "redirect:/displayAll";
     }
 
 
+    @RequestMapping(value = "/checkRole", method = RequestMethod.GET)
+    public String getRole(Model model, User user, Principal principal) {
 
+        //String username = user.getUsername();
+        user = userRepository.findByUsername(principal.getName());
+        String typeRole = user.getUserType();
+        if (typeRole.equalsIgnoreCase("USER")){
+            return "registration";
+        }else
+            return "experience";
+
+
+    }
 
     public UserValidator getUserValidator() {
         return userValidator;
