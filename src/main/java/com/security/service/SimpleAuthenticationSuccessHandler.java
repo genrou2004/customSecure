@@ -29,14 +29,14 @@ public class SimpleAuthenticationSuccessHandler implements AuthenticationSuccess
         authorities.forEach(authority -> {
             if(authority.getAuthority().equals("ROLE_USER")) {
                 try {
-                    redirectStrategy.sendRedirect(arg0, arg1, "/register");
+                    redirectStrategy.sendRedirect(arg0, arg1, "/jobseeker");
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             } else if(authority.getAuthority().equals("ROLE_ADMIN")) {
                 try {
-                    redirectStrategy.sendRedirect(arg0, arg1, "/");
+                    redirectStrategy.sendRedirect(arg0, arg1, "/recruiter");
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
