@@ -11,10 +11,19 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by student on 7/5/17.
@@ -27,9 +36,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    SimpleAuthenticationSuccessHandler simpleAuthenticationSuccessHandler;
+//    @Autowired
+//    SimpleAuthenticationSuccessHandler simpleAuthenticationSuccessHandler;
+//    @Autowired
+//    DataSource dataSource;
 
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     @Override
     public UserDetailsService userDetailsServiceBean() throws Exception {
         return new SSUserDetailsService(userRepository);
@@ -42,7 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").permitAll().successHandler(simpleAuthenticationSuccessHandler)
+                .formLogin().loginPage("/login")
+                .successHandler(new SimpleAuthenticationSuccessHandler())
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -58,10 +71,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication().withUser("user").password("password").roles("USER")
                 .and()
                 .withUser("root").password("password").roles("ADMIN");
+
+
+       /* auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery(
+                        "select username,password, enabled from users where username=?")
+                .authoritiesByUsernameQuery(
+                        "select username, role from user_roles where username=?");*/
+
         auth
                 .userDetailsService(userDetailsServiceBean())
                 .passwordEncoder(encoder());
     }
+
 
     @Bean
     public PasswordEncoder encoder() {

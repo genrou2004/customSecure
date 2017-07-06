@@ -25,7 +25,7 @@ public class SimpleAuthenticationSuccessHandler implements AuthenticationSuccess
     public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1, Authentication authentication)
             throws IOException, ServletException {
 
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        Collection <? extends GrantedAuthority> authorities = authentication.getAuthorities();
         authorities.forEach(authority -> {
             if(authority.getAuthority().equals("ROLE_USER")) {
                 try {

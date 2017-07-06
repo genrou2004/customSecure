@@ -52,10 +52,15 @@ public class HomeController {
         }
         return "index";
     }
+
     public UserValidator getUserValidator() {
         return userValidator;
     }
     public void setUserValidator(UserValidator userValidator) {
         this.userValidator = userValidator;
     }
+
+    //On Successful login, go to different pages based on their role
+
+
 }
