@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head th:replace="base::head">
+<head th:replace="header::head">
     <meta charset="UTF-8" />
     <title>Experience</title>
 </head>
 <body>
-<nav class="navbar navbar-default" th:replace="base::nav"></nav>
-
+<nav class="navbar navbar-default" th:replace="header::nav"></nav>
+<div class="jumbotron jumbotron-fluid container" >
 <div class="container">
            <div class="container">
-            <h3>Build Your Work Experience</h3>
+            <h3>Add Work Experience</h3>
             <form th:action="@{/experience}" th:object="${experience}" method="post">
                 <div class="col-xs-4">
                     <label for="tittle">Title</label>
-                    <input type="text" name="title" th:field="*{title}" class="form-control" id="tittle" placeholder="company Name" />
+                    <input type="text" name="title" th:field="*{title}" class="form-control" id="tittle" placeholder="Title" />
                 </div>
                 <div class="col-xs-4">
                     <label for="company">Company</label>
@@ -25,26 +25,28 @@
                 </div>
                 <div class="col-xs-4">
                     <label for="from">From</label>
-                    <input type="text" th:field="*{from}" class="form-control" id="from"  />
+                    <input type="datetime-local" th:field="*{startDate}" class="form-control" id="from"  />
                 </div>
                 <div class="col-xs-4">
                     <label for="to">To</label>
-                    <input type="text" th:field="*{to}" class="form-control" id="to" />
+                    <input type="datetime-local" th:field="*{endDate}" class="form-control" id="to" />
                 </div>
                 <div class="col-xs-4">
                     <label for="description">Description</label>
                     <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="description" />
                 </div>
 
-                <button type="submit" class="btn btn-default">Add More Experience</button>
+                <button type="submit" class="btn btn-default">Add Experience</button>
             </form>
             <div class="col-xs-4">
-                <form th:action="@{/skills}" method="post">
+                <form th:action="@{/skills}" method="GET">
                     <button type="submit" class="btn btn-default">Goto Skill</button>
                 </form>
             </div>
 
         </div>
     </div>
+    <th:block th:replace="footer :: footer"></th:block>
+</div>
 </body>
 </html>

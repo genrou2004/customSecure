@@ -30,6 +30,7 @@ public class UserValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "user.username.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "user.email.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "user.password.empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userType", "user.userType.empty");
         if(username.length() < 5){
             errors.rejectValue("username","user.username.tooShort");
         }

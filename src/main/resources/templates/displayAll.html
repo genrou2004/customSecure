@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head th:replace="base :: head">
+<head th:replace="header :: head">
     <meta charset="UTF-8" />
     <title>Title</title>
 </head>
 <body>
+<div class="jumbotron jumbotron-fluid container" >
 <div class="container">
     <div class="jumbotron">
         <div class="container">
-            <nav class="navbar navbar-default" th:replace="base::nav"> </nav>
+            <nav class="navbar navbar-default" th:replace="header::nav"> </nav>
 
             <table class="table table-hover">
 
@@ -16,17 +17,17 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
-                    <th>Registered Date</th>
+
 
                 </tr>
-                <div th:each="person : ${persons}">
+                <div th:each="user : ${users}">
 
                     <tr>
 
-                        <td><p th:text = "${person.firstName}"></p></td>
-                        <td th:text = "${person.lastName}"></td>
-                        <td th:text = "${person.email}"></td>
-                        <td th:text = "${#dates.format(person.date, 'MMM-dd-yyyy')}"></td>
+                        <td><p th:text = "${user.firstName}"></p></td>
+                        <td th:text = "${user.lastName}"></td>
+                        <td th:text = "${user.email}"></td>
+
 
                     </tr>
                 </div>
@@ -44,7 +45,7 @@
 
 
                 </tr>
-                <div th:each="education : ${educations}">
+                <div th:each="education : ${educationIterables}">
 
                     <tr>
 
@@ -63,23 +64,27 @@
             <table class="table table-hover">
 
                 <tr>
+                    <th>Title</th>
                     <th>Company Name</th>
-                    <th>Position</th>
+                    <th>Location</th>
                     <th>From</th>
                     <th>To</th>
-                    <th>Duty</th>
+                    <th>Description</th>
+                    <th>Email</th>
 
 
                 </tr>
-                <div th:each="test : ${Expvalues}">
+                <div th:each="experience : ${experienceIterable}">
 
                     <tr>
 
-                        <td th:text = "${test.company}"></td>
-                        <td th:text = "${test.position}"></td>
-                        <td th:text = "${test.startingYear}"></td>
-                        <td th:text = "${test.until}"></td>
-                        <td th:text = "${test.duty}"></td>
+                        <td th:text = "${experience.title}"></td>
+                        <td th:text = "${experience.companyName}"></td>
+                        <td th:text = "${experience.location}"></td>
+                        <td th:text = "${experience.startDate}"></td>
+                        <td th:text = "${experience.endDate}"></td>
+                        <td th:text = "${experience.description}"></td>
+                        <td th:text = "${experience.email}"></td>
 
                     </tr>
                 </div>
@@ -89,16 +94,16 @@
             <table class="table table-hover">
 
                 <tr>
-                    <th>Good at</th>
+                    <th>Skills</th>
                     <th>Rating</th>
 
                 </tr>
-                <div th:each="test : ${Skillvalues}">
+                <div th:each="skill : ${skillsIterable1}">
 
                     <tr>
 
-                        <td th:text = "${test.skills}"></td>
-                        <td th:text = "${test.rating}"></td>
+                        <td th:text = "${skil.skills}"></td>
+                        <td th:text = "${skil.rating}"></td>
 
 
                     </tr>
@@ -109,5 +114,7 @@
 
         </div>
     </div></div>
+</div>
+<th:block th:replace="footer :: footer"></th:block>
 </body>
 </html>

@@ -47,7 +47,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
-                .defaultSuccessUrl("/checkRole")
+                .defaultSuccessUrl("/checkRole");
+
+
+        http
+                .formLogin().loginPage("/login")
                 .permitAll()
                 .and()
                 .logout()
@@ -60,10 +64,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth
+        /*auth
                 .inMemoryAuthentication().withUser("user").password("password").roles("USER")
                 .and()
-                .withUser("root").password("password").roles("ADMIN");
+                .withUser("root").password("password").roles("ADMIN");*/
 
 
        /* auth.jdbcAuthentication().dataSource(dataSource)

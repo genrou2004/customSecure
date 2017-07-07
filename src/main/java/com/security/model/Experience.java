@@ -1,9 +1,9 @@
 package com.security.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+
+import javax.persistence.*;
+
 import java.util.Date;
 
 /**
@@ -18,17 +18,25 @@ public class Experience {
     private String title;
     private String companyName;
     private String location;
-    private Date from;
-    private Date to;
     private String description;
+    private String startDate;
+    private String endDate;
     private String email;
 
-    public String getEmail() {
-        return email;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     public int getId() {
@@ -51,8 +59,8 @@ public class Experience {
         return companyName;
     }
 
-    public void setCompanyName(String company) {
-        this.companyName = company;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getLocation() {
@@ -63,27 +71,19 @@ public class Experience {
         this.location = location;
     }
 
-    public Date getFrom() {
-        return from;
-    }
-
-    public void setFrom(Date from) {
-        this.from = from;
-    }
-
-    public Date getTo() {
-        return to;
-    }
-
-    public void setTo(Date to) {
-        this.to = to;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

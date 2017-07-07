@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head th:replace="base :: Mena">
+<head th:replace="header :: head">
     <meta charset="UTF-8" />
     <title>Title</title>
 </head>
 <body>
+<div class="jumbotron jumbotron-fluid container" >
 <div class="container">
     <div class="jumbotron">
 
-        <nav class="navbar navbar-default" th:replace="base::navi"> </nav>
+        <nav class="navbar navbar-default" th:replace="header::navi"> </nav>
 
         <table class="table table-hover">
 
@@ -16,9 +17,9 @@
                 <th>Company Name</th>
              </tr>
 
-            <div th:each="loopin : ${searchCompany}">
+            <div th:each="company : ${experienceIterable}">
                 <tr>
-                    <td><p th:text = "${loopin.company}"></p></td>
+                    <td><p th:text = "${company.company}"></p></td>
 
 
                     <!--<td th:text = "${#dates.format(mylink.date, 'MMM-dd-yyyy')}"></td>  #dates.format(sprint.releaseDate, 'dd-MMM-yyyy')-->
@@ -29,5 +30,7 @@
 
     </div>
 </div>
+</div>
+<th:block th:replace="footer :: footer"></th:block>
 </body>
 </html>

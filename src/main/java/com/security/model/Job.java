@@ -14,18 +14,19 @@ public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String title;
     private String employeer;
     private double salary_range;
     private String description;
 //    private List<Skills> skillsList;
 
-    public int getId() {
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -60,6 +61,4 @@ public class Job {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 }

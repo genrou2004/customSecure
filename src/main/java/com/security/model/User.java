@@ -10,6 +10,7 @@ import java.util.Collection;
  * Created by student on 7/5/17.
  */
 @Entity
+@Table(name = "User_tb")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

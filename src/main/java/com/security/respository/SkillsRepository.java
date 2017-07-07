@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface SkillsRepository extends CrudRepository<Skills,Integer>{
     List<Skills> findByEmail(String email);
+    List<Skills> findBySkills(String skills);
 }

@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Spring Security Example</title>
-    <th:block th:replace="base :: head"></th:block>
+    <th:block th:replace="header :: head"></th:block>
 </head>
 <body>
-<th:block th:replace="base :: nav"></th:block>
+<th:block th:replace="header :: nav"></th:block>
+<div class="jumbotron jumbotron-fluid container" >
 <div class="container">
     <br /><br /><br />
     <h4>New User Registration</h4>
@@ -43,6 +44,8 @@
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
 </div><!-- /.container -->
-<th:block th:replace="base :: footlinks"></th:block>
+</div>
+<th:block th:replace="footer :: footer"></th:block>
+
 </body>
 </html>

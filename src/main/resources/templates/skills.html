@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head th:replace="base::head">
+<head th:replace="header::head">
     <meta charset="UTF-8" />
     <title>Skills</title>
 </head>
 <body>
-<nav class="navbar navbar-default" th:replace="base::nav"></nav>
-
+<nav class="navbar navbar-default" th:replace="header::nav"></nav>
+<div class="jumbotron jumbotron-fluid container" >
 <div class="container">
-    <div class="jumbotron">
 
         <div class="container">
-            <h3>Build Your Skills and Rating</h3>
+            <h3>Skills and Rating</h3>
             <form th:action="@{/skills}" th:object="${skill}" method="post">
                 <div class="col-xs-4">
                     <label for="skills">Skill Name</label>
@@ -25,7 +24,7 @@
                 <button type="submit" class="btn btn-default">Add Skills</button>
             </form>
             <div class="col-xs-4">
-                <form action="/displayAll">
+                <form action="/skillseekers">
                     <button type="submit" class="btn btn-default">Display Profile</button>
                 </form>
             </div>

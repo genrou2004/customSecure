@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Spring Security Example</title>
-    <th:block th:replace="base :: head"></th:block>
+    <th:block th:replace="header :: head"></th:block>
 </head>
 <body>
-<th:block th:replace="base :: nav"></th:block>
+<nav th:replace="header::nav"></nav>
+<div class="jumbotron jumbotron-fluid container" >
 
 <div class="container">
     <br /><br /><br />
@@ -21,12 +22,15 @@
         You have been logged out.
     </div>
     <form th:action="@{/login}" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="Sign In"/></div>
+        <label for="username">Username</label>:
+        <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+        <label for="password">Password</label>:
+        <input type="password" id="password" name="password" /> <br />
+        <input type="submit" value="Log in" />
     </form>
-</div><!-- /.container -->
+</div>
+</div>
+<footer th:replace="footer::footer"></footer>
 
-<th:block th:replace="base :: footlinks"></th:block>
 </body>
 </html>

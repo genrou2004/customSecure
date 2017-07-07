@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html     xmlns="http://www.w3.org/1999/xhtml"
-          xmlns:th="http://www.thymeleaf.org"
+          xmlns:th="www.thymeleaf.org"
           xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Spring Security Example</title>
-    <th:block th:replace="base :: head"></th:block>
+    <th:block th:replace="header :: head"></th:block>
 </head>
 <body>
-<th:block th:replace="base :: nav"></th:block>
+<nav class="navbar navbar-default" th:replace="header::nav"></nav>
+<div class="jumbotron jumbotron-fluid container" >
 <div class="container">
     <br /><br /><br />
-    <h4>Job Form</h4>
-    <form autocomplete="off" action="#" th:action="@{/job}"
-          th:object="${job}" method="post">
+    <h4>Post New Job</h4>
+    <form action="#" th:action="@{/job}" th:object="${job}" method="post">
         <div class="form-group">
-            <label for="title">Job Titile <mark><strong><span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</span></strong></mark></label>
-            <input type="text" class="form-control" id="title" placeholder="Job itle" th:field="*{firstName}" />
+            <label for="title">title </label>
+            <input type="text" class="form-control" id="title" placeholder="title" th:field="*{title}" />
         </div>
         <div class="form-group">
-            <label for="lastName">Employeer <mark><strong><span th:if="${#fields.hasErrors('lastName')}" th:errors="*{employeer}">Employeer Name Error</span></strong></mark></label>
-            <input type="text" class="form-control" id="lastName" placeholder="Last Name" th:field="*{lastName}" />
+            <label for="employer">employer</label>
+            <input type="text" class="form-control" id="employer" placeholder="employer" th:field="*{employeer}" />
         </div>
         <div class="form-group">
-            <label for="email">Salary Range <mark><strong><span th:if="${#fields.hasErrors('salaryRange')}" th:errors="*{salaryRange}">Salary Range Error</span></strong></mark></label>
-            <input type="text" class="form-control" id="email" placeholder="Email" th:field="*{salaryRange}" />
+            <label for="salaryRange">Salary Range </label>
+            <input type="text" class="form-control" id="salaryRange" placeholder="Salary Range" th:field="*{salary_range}" />
         </div>
         <div class="form-group">
-            <label for="username">Description <mark><strong><span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</span></strong></mark></label>
-            <input type="text" class="form-control" id="username" placeholder="Description" th:field="*{description}" />
+            <label for="description">description </label>
+            <input type="text" class="form-control" id="description" placeholder="description" th:field="*{description}" />
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
 </div><!-- /.container -->
-<th:block th:replace="base :: footlinks"></th:block>
+</div>
+<th:block th:replace="footer :: footer"></th:block>
+
 </body>
 </html>

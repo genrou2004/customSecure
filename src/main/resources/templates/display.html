@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="header :: head">
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid container" >
+<div class="container">
+    <div class="jumbotron">
+
+        <nav class="navbar navbar-default" th:replace="header::nav"> </nav>
+
+        <table class="table table-hover">
+
+            <tr>
+                <th>Job Title</th>
+                <th>Employeer</th>
+                <th>Salary Range</th>
+                <th>Description</th>
+
+
+
+
+            </tr>
+
+            <div th:each="jobseeker : ${jobresult}">
+                <tr>
+                    <td th:text = "${jobseeker.title}"></td>
+                    <td th:text = "${jobseeker.employer}"></td>
+                    <td th:text = "${jobseeker.salary}"></td>
+                    <td th:text = "${jobseeker.description}"></td>
+
+
+                </tr>
+            </div>
+            <div th:each="recruiter : ${recruiters}">
+                <tr>
+                    <td th:text = "${recruiter.title}"></td>
+                    <td th:text = "${recruiter.employeer}"></td>
+                    <td th:text = "${recruiter.salary_range}"></td>
+                    <td th:text = "${recruiter.description}"></td>
+
+
+                </tr>
+            </div>
+
+        </table>
+        <div class="col-xs-4">
+            <form action="/jobseeker">
+                <button type="submit" class="btn btn-default">Search Again</button>
+            </form>
+        </div>
+        <div class="col-xs-4">
+            <form action="/recruiter">
+                <button type="submit" class="btn btn-default">Build Profile</button>
+            </form>
+        </div>
+        <div class="col-xs-4">
+            <form action="/">
+                <button type="submit" class="btn btn-default">home</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<th:block th:replace="footer :: footer"></th:block>
+</body>
+</html>

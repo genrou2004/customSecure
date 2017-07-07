@@ -1,17 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org ">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Title</title>
-    <th:block th:replace="base :: head"></th:block>
 </head>
 <body>
-<th:block th:replace="base :: nav"></th:block>
-<p>This content is only shown to recruiter.</p>
-<div>
-    <form th:action="@{/job}" method="post">
-        <button type="submit" class="btn btn-default">Post Job</button>
-    </form>
+<div class="jumbotron jumbotron-fluid container">
+    <div class="container">
+        <div class="jumbotron">
+            <nav class="navbar navbar-default" th:replace="header2::nav2"></nav>
+            <div class="container">
+                <h3>Only Visible for Recruiters</h3>
+                <form th:action="@{/skillseekers}" th:object="${skill}" method="post">
+                    <input type="text" th:field="*{skills}" name="skills" placeholder="By Skill"/>
+                    <button type="submit">Search</button>
+                </form>
+                <form th:action="@{/employerSeeker}" th:object="${job}" method="post">
+                    <input type="text" th:field="*{employer}" name="title" placeholder="By Employer"/>
+                    <button type="submit">Search</button>
+                </form>
+                <p><a class="btn btn-primary btn-lg" href="vacancy" role="button">Post new Job &raquo;</a></p>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

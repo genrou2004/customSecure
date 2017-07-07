@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+<nav th:fragment="nav2">
+    <div class="jumbotron container">
+        <div id="navbare" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="">View Profile</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li><a href="/search"><span class="glyphicon glyphicon-log-in"></span>Jobs</a></li>
+                <li><a href="/education"><span class="glyphicon glyphicon-log-in"></span> Add Skills</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

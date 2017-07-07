@@ -1,3 +1,4 @@
+/*
 package com.security.controller;
 
 import com.security.model.Role;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+*/
 /**
  * Created by student on 7/5/17.
- */
+ *//*
+
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -58,3 +61,4 @@ public class DataLoader implements CommandLineRunner {
         userRepository.save(user);
     }
 }
+*/
